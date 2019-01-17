@@ -15,5 +15,6 @@
   "devDependencies": {
     "mdx-deck": "^1.6.7"
   },
-  "name": "algorand-primer"
+  "name": "algorand-primer",
+  "dependencies": {}
 }

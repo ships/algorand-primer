@@ -1,38 +1,10 @@
+first of several talks I am developing related to cryptocurrencies, game theory, social technology, and critical methods.
 
-# mdx-deck basic template
+this talk is in the technical track, and aims to give an overview of the mechanism used by Algorand to accomplish Byzantine agreement.
 
-This was generated with [mdx-deck][]'s `npm init deck` command.
 
-## Development
-
-To run the presentation deck in development mode:
-
-```sh
-npm start
-```
-
-Edit the [`deck.mdx`](deck.mdx) file to get started.
-
-## Exporting
-
-To build the presentation deck as static HTML:
-
-```sh
-npm run build
-```
-
-To export a PDF:
-
-```sh
-npm run pdf
-```
-
-To export an image of the title slide:
-
-```sh
-npm run image
-```
-
-For more documentation see the [mdx-deck][] repo.
+created with [mdx-deck][].
 
 [mdx-deck]: https://github.com/jxnblk/mdx-deck
+
+all material in this deck is copyright 2019 github.com/ships
