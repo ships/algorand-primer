@@ -1,6 +1,7 @@
 import { Head } from 'mdx-deck'
 import { SplitRight, Split } from 'mdx-deck/layouts'
 import { Appear } from 'mdx-deck'
+import { BgImage } from './src'
 
 export { comic as theme } from 'mdx-deck/themes'
 
@@ -151,7 +152,7 @@ though, in reality, we generally define Graded Consensus for any proportion of h
 
 ---
 
-[ drawing of GC ]
+<BgImage src={require("file-loader!./assets/gc.jpg")}/>
 
 ---
 
