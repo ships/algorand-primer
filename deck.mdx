@@ -1,7 +1,7 @@
 import { Head } from 'mdx-deck'
 import { SplitRight, Split } from 'mdx-deck/layouts'
 import { Appear } from 'mdx-deck'
-import { BgImage } from './src'
+import { BgImage, TeX, CaptionFloat } from './src'
 
 export { comic as theme } from 'mdx-deck/themes'
 
@@ -12,21 +12,33 @@ export { comic as theme } from 'mdx-deck/themes'
 
 # byzantine agreement in ALGORAND
 
+```
+early evening
+c/o haut kultur group
+
+eve@haut-kultur.group
+```
+
 ---
 
+
 ## Given:
-- 3n + 1 players in a gossip commons
-- {v_0, v_1, ... v_{3n+1}} secret values in Z
-- each player `i` only knows `v_i`
-- a powerful malicious agent (the Adversary)
+- <TeX formula={'3n+1'} /> players in a gossip commons
+- <TeX formula={'{v_0, v_1, ... v_{3n+1}}'}/> secret values in set <TeX formula={'M'}/>
+- <TeX formula={'i'}/>th player only knows <TeX formula={'v_i'}/>
+- a very powerful malicious agent (the Adversary)
+
+```notes
+M is some message space, like a binary string of some length
+```
 
 ---
 
 ## Accomplish this:
 - by known time t, each player reach a decision
-- each player's decision is in `{Z ⋃ ⊥ }`
+- <div />each player's decision is in <TeX formula={'M \\cup \\bot '}/>
 - no two players disagree on their decision
-- if `v_i = V` for all `i`, then every player has decided on `V`.
+- <div />if <TeX formula={'v_i = V'}/> for all <TeX formula={'i'}/>, then every player has decided on <TeX formula={'V'}/>.
 
 ---
 
@@ -43,11 +55,12 @@ export { comic as theme } from 'mdx-deck/themes'
 ---
 
 # This is easy in 1 round:
-Each player `i` gossips `v_i`.
 
-If she ever receives a gossiped message that is not `v_i`, she decides on `⊥`.
+<div /> Each player <TeX formula={'i'}/> gossips <TeX formula={'v_i'}/>.
 
-If not, then when round 1 ends, decide on `v_i`.
+<div /> If she ever receives a gossiped message that is not <TeX formula={'v_i'}/>, she decides on <TeX formula={'\\bot'}/>.
+
+<div /> If not, then when round 1 ends, decide on <TeX formula={'v_i'}/>.
 
 ---
 
@@ -78,7 +91,7 @@ remember, ze is very powerful!
 - control the message passing network
 
 ```notes
-so, in our lighthearted game, ze can trivially force all decisions to be ⊥.
+so, in our lighthearted game, ze can trivially force all decisions to be \\bot.
 ```
 
 ---
@@ -105,6 +118,33 @@ counts as corrupting that user in a later round
 emphasize: this is FAR MORE POWERFUL than the adversarial model in bitcoin, stellar
 this is also not a totally precise specification but suffices for this talk
 ```
+
+---
+
+
+<BgImage src={require("file-loader!./assets/Matt_Berninger_at_Way_Out_West_2014.jpg")} >
+  <CaptionFloat>
+    Kim Metso [<a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>], <a href="https://commons.wikimedia.org/wiki/File:Matt_Berninger_at_Way_Out_West_2014.jpg">from Wikimedia Commons</a>
+  </CaptionFloat>
+</BgImage>
+
+
+```notes
+words of matt berninger: walk it back
+```
+
+---
+
+# only require resolutions among consistently honest majority
+
+---
+
+## An honest majority should consistently resolve:
+- by known time t, each player reach a decision
+- <div />each player's decision is in <TeX formula={'M \\cup \\bot '}/>
+- no two players disagree on their decision
+- <div />if <TeX formula={'v_i = V'}/> for all <TeX formula={'i'}/>, then every player has decided on <TeX formula={'V'}/>.
+
 ---
 
 # How can this be done?
@@ -116,7 +156,7 @@ this is also not a totally precise specification but suffices for this talk
 - corrupt players do whatever adversary want
 - game will consist of rounds
 - honest players will eventually halt
-- honest players reach a Decision in `{Z ⋃ ⊥ }`
+- <div />honest players reach a Decision in <TeX formula={'M \\cup \\{ \\bot \\}'}/>
 
 ---
 
@@ -134,7 +174,7 @@ What would you do with 3 wishes from
 
 All players `i` in an honest majority will halt with a transformation like:
 
-### `v'_i → (v_i, g_i)`
+<TeX formula={"v'_i \\rightarrow (v_i, g_i)"}/>
 
 ```notes
 though, in reality, we generally define Graded Consensus for any proportion of honesty, and only solve it for t >= 3n + 1
@@ -142,13 +182,13 @@ though, in reality, we generally define Graded Consensus for any proportion of h
 
 ---
 
-### `v'_i → (v_i, g_i)`
+<TeX formula={"v'_i \\rightarrow (v_i, g_i)"}/>
 
-- `∀i : {v'_i, v_i} ⊂ Z, {g_i} ⊂ {0,1,2}`
-- v'_i is an initial value known only to `i`
-- all honest with `g > 0` chose same `v_i`
-- honestly chosen `g` never include both `0` and `2`
-- if all honest `v'_i` are the same value `V`, then all `(v_i, g_i) = (V, 2)`
+- <div /> all <TeX formula={"v'_i, v_i \\in M, g_i \\in \\{0,1,2\\}"} />
+- <div /> <TeX formula={"v'_i"} /> is an initial value known only to <TeX formula={'i'} />
+- <div /> all honest with <TeX formula={'g > 0'}/> chose same <TeX formula={'v_i'} />
+- <div /> honestly chosen <TeX formula={'g'}/> never include both <TeX formula={'0'}/> and <TeX formula={'2'}/>
+- <div /> unanimous honest <TeX formula={"v'_i"}/> imply all <TeX formula={'(v_i, g_i) = (V, 2)'}/>
 
 ---
 
@@ -163,16 +203,16 @@ though, in reality, we generally define Graded Consensus for any proportion of h
 
 All players `i` in an honest majority will halt with a transformation like:
 
-### `b'_i → b_i`
+<TeX formula={"b'_i \\rightarrow b_i"}/>
 
 ---
 
-### `b'_i → b_i`
+<TeX formula={"b'_i \\rightarrow b_i"}/>
 
-- `∀i : {b_i, b'_i} ⊂ {0,1}`
-- b'_i is an initial bit known only to `i`
+- <div /> all <TeX formula={"b'_i, b_i \\in \\{0,1\\}"} />
+- <TeX formula={"b'_i"}/> is an initial bit known only to i
 - all honest `i` decide on same result (agreement)
-- if all honest `b'_i` are the same value `B`, then all `b_i = B` (consistency)
+- <div/>unanimous honest <TeX formula={"b'_i"}/> will not flip their bits (consistency)
 
 ---
 
@@ -182,22 +222,26 @@ All players `i` in an honest majority will halt with a transformation like:
 
 # Composition is straightforward
 
+What if a player could reliably prove to everyone that they had won a fair, robust, and random lotto?
+
+---
+
+# 3: a sortition scheme
+
+### for all players `i,p,q` and all rounds `r`:
+- <TeX formula={"CONFIRM_p(\\sigma_i(r)) = CONFIRM_q(\\sigma_i(r))"}/>
+- <TeX formula={"P\[CONFIRM_p(\\sigma_i(r))\] \\approx 1/n"}/>
+- <TeX formula={"t < r \\rightarrow \\forall \\Sigma: P\[CONFIRM_p(\\Sigma_{i}(r))\] \\approx 0"} />
+
+```notes
+1: players won't disagree on validity
+2: distribution is fair
+3: for any function Big-Sigma which can be computed before round r begins
+```
+
 ---
 
 # Choosing the initial `v'` for all honest players
-
-What if a player could reliably prove to everyone that they had won a fair, robust, and random lotto?
-
-```
-∀i,p,q ∈ N; r ∈ Z:
-CONFIRM_p(𝝈_i(r)) = CONFIRM_q(𝝈_i(r))
-P[CONFIRM_p(𝝈_i(r))] = 1/N
-
-t < r → ∀Σ: P[CONFIRM_p(Σ_i(r))] ≈ 0
-```
-```notes
-for any function Big-Sigma which can be computed before round r begins
-```
 
 ---
 
@@ -234,7 +278,7 @@ remember, transactions cannot be forged, so the risk we are confronting is that 
 
 Probability that a requested transaction can be withheld by the adversary for 1 hour:
 
-P ≈ 1/3.5B
+<TeX formula={"P \\approx 1/3.5 \\times 10^9"} />
 
 ```notes
 leader election's purpose is to ensure there's an agreed upon ledger order: everyone already has a decently saturated set of transactions.
@@ -268,3 +312,16 @@ Once that message is propagated, ze cannot stop it, and ze gains no benefit from
 ---
 
 Thus, in a player-replaceable byzantine agreement, even a mobile adversary who must corrupt players by name cannot capture a committee majority in a single step except with negligible probability.
+
+---
+
+wrapping up
+
+---
+
+import QRCode from 'qrcode.react'
+
+survey for next time:
+
+<QRCode value='https://ships.github.io' size={512} bgColor='#FFFFFF00'/>
+

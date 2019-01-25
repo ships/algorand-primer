@@ -1,3 +1,5 @@
 import BgImage from './image'
+import TeX from './jaxtex'
+import CaptionFloat from './caption'
 
-export { BgImage }
+export { BgImage, TeX, CaptionFloat }
