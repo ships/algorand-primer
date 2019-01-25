@@ -1,7 +1,7 @@
 import { Head } from 'mdx-deck'
 import { SplitRight, Split } from 'mdx-deck/layouts'
 import { Appear } from 'mdx-deck'
-import { BgImage, TeX, CaptionFloat } from './src'
+import { BgImage, TeX, CaptionFloat, Layout } from './src'
 
 export { comic as theme } from 'mdx-deck/themes'
 
@@ -20,7 +20,7 @@ eve@haut-kultur.group
 ```
 
 ---
-
+export default Layout
 
 ## Given:
 - <TeX formula={'3n+1'} /> players in a gossip commons
@@ -33,6 +33,7 @@ M is some message space, like a binary string of some length
 ```
 
 ---
+export default Layout
 
 ## Accomplish this:
 - by known time t, each player reach a decision
@@ -41,10 +42,12 @@ M is some message space, like a binary string of some length
 - <div />if <TeX formula={'v_i = V'}/> for all <TeX formula={'i'}/>, then every player has decided on <TeX formula={'V'}/>.
 
 ---
+export default Layout
 
 # How can this be done?
 
 ---
+export default Layout
 
 ## Devise a game:
 - all players will play faithfully
@@ -53,6 +56,7 @@ M is some message space, like a binary string of some length
 - all players reach a Decision
 
 ---
+export default Layout
 
 # This is easy in 1 round:
 
@@ -63,6 +67,7 @@ M is some message space, like a binary string of some length
 <div /> If not, then when round 1 ends, decide on <TeX formula={'v_i'}/>.
 
 ---
+export default Layout
 
 # That was too easy, wasn't it?
 
@@ -73,6 +78,7 @@ don't forget: this must not only be true but Provably so
 ```
 
 ---
+export default Layout
 
 ## Because of our Adversary:
 
@@ -81,6 +87,7 @@ remember, ze is very powerful!
 ... how powerful, exactly?
 
 ---
+export default Layout
 
 ## Ze can:
 
@@ -95,6 +102,7 @@ so, in our lighthearted game, ze can trivially force all decisions to be \\bot.
 ```
 
 ---
+export default Layout
 
 # 🤯
 
@@ -103,6 +111,7 @@ we should just fall down and die, right?
 ```
 
 ---
+export default Layout
 
 ## Ze cannot, within one round:
 - leverage unbounded compute power
@@ -121,7 +130,6 @@ this is also not a totally precise specification but suffices for this talk
 
 ---
 
-
 <BgImage src={require("file-loader!./assets/Matt_Berninger_at_Way_Out_West_2014.jpg")} >
   <CaptionFloat>
     Kim Metso [<a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>], <a href="https://commons.wikimedia.org/wiki/File:Matt_Berninger_at_Way_Out_West_2014.jpg">from Wikimedia Commons</a>
@@ -134,10 +142,12 @@ words of matt berninger: walk it back
 ```
 
 ---
+export default Layout
 
 # only require resolutions among consistently honest majority
 
 ---
+export default Layout
 
 ## An honest majority should consistently resolve:
 - by known time t, each player reach a decision
@@ -146,10 +156,12 @@ words of matt berninger: walk it back
 - <div />if <TeX formula={'v_i = V'}/> for all <TeX formula={'i'}/>, then every player has decided on <TeX formula={'V'}/>.
 
 ---
+export default Layout
 
 # How can this be done?
 
 ---
+export default Layout
 
 ## Devise a game:
 - all honest players will play faithfully
@@ -159,16 +171,19 @@ words of matt berninger: walk it back
 - <div />honest players reach a Decision in <TeX formula={'M \\cup \\{ \\bot \\}'}/>
 
 ---
+export default Layout
 
 What would you do with 3 wishes from
 
 ## the game genie?
 
 ---
+export default Layout
 
 # 1: a graded consensus protocol
 
 ---
+export default Layout
 
 ## Graded consensus:
 
@@ -181,6 +196,7 @@ though, in reality, we generally define Graded Consensus for any proportion of h
 ```
 
 ---
+export default Layout
 
 <TeX formula={"v'_i \\rightarrow (v_i, g_i)"}/>
 
@@ -195,9 +211,11 @@ though, in reality, we generally define Graded Consensus for any proportion of h
 <BgImage src={require("file-loader!./assets/gc.jpg")}/>
 
 ---
+export default Layout
 
 # 2: a binary byzantine agreement protocol
 ---
+export default Layout
 
 ## binary BA:
 
@@ -206,6 +224,7 @@ All players `i` in an honest majority will halt with a transformation like:
 <TeX formula={"b'_i \\rightarrow b_i"}/>
 
 ---
+export default Layout
 
 <TeX formula={"b'_i \\rightarrow b_i"}/>
 
@@ -215,16 +234,19 @@ All players `i` in an honest majority will halt with a transformation like:
 - <div/>unanimous honest <TeX formula={"b'_i"}/> will not flip their bits (consistency)
 
 ---
+export default Layout
 
 [ drawing of BBA ]
 
 ---
+export default Layout
 
 # Composition is straightforward
 
 What if a player could reliably prove to everyone that they had won a fair, robust, and random lotto?
 
 ---
+export default Layout
 
 # 3: a sortition scheme
 
@@ -240,10 +262,12 @@ What if a player could reliably prove to everyone that they had won a fair, robu
 ```
 
 ---
+export default Layout
 
 # Choosing the initial `v'` for all honest players
 
 ---
+export default Layout
 
 ## Ok, so each round choose `v'` like so:
 1. every player computes a lotto ticket 𝝈
@@ -251,20 +275,24 @@ What if a player could reliably prove to everyone that they had won a fair, robu
 3. everyone chooses the best 𝝈 winner as `v'`
 
 ---
+export default Layout
 
 [ drawing of composition]
 
 ---
+export default Layout
 
 # What about the bad case
 
 the adversary cannot prevent a true winner from propagating their ticket ... but ze will have a true winning ticket hirself in `n/3n+1` cases and CAN elect to send hir true winning ticket only to subset of players:
 
 ---
+export default Layout
 
 [ drawing of this case ]
 
 ---
+export default Layout
 
 ### This case reduces to honest propagation, because ze still has control over block proposal.
 
@@ -273,6 +301,7 @@ the adversary cannot prevent a true winner from propagating their ticket ... but
 ## The adversary can force 1/3 of blocks to omit transactions, and make agreement take maximum allowed time.
 
 ---
+export default Layout
 
 remember, transactions cannot be forged, so the risk we are confronting is that state changes are prevented..
 
@@ -288,36 +317,43 @@ Here, it is a pessimistic maximum.
 ```
 
 ---
+export default Layout
 
 # How does this scale?
 
 [ 10B ] [ 4K ] [ 1 ]
 
 ---
+export default Layout
 
 # Player Replaceability
 
 This is a novel property.
 
 ---
+export default Layout
 
 The adversary is mobile. Once the protocol begins, why doesn't ze just corrupt all the committee members?
 
 ---
+export default Layout
 
 The committee is re-randomized in every step, and each step consists of only 1 message being sent by each member, revealing decision and identity simultanelously.
 
 Once that message is propagated, ze cannot stop it, and ze gains no benefit from maintaining corruption of that user, whose job is done.
 
 ---
+export default Layout
 
 Thus, in a player-replaceable byzantine agreement, even a mobile adversary who must corrupt players by name cannot capture a committee majority in a single step except with negligible probability.
 
 ---
+export default Layout
 
 wrapping up
 
 ---
+export default Layout
 
 import QRCode from 'qrcode.react'
 
