@@ -1,7 +1,7 @@
 import { Head } from 'mdx-deck'
 import { SplitRight, Split } from 'mdx-deck/layouts'
 import { Appear } from 'mdx-deck'
-import { BgImage, TeX, CaptionFloat, Layout } from './src'
+import { BgImage, TeX, CaptionFloat, Layout, QRLink } from './src'
 
 export { comic as theme } from 'mdx-deck/themes'
 
@@ -350,9 +350,7 @@ Thus, in a player-replaceable byzantine agreement, even a mobile adversary who m
 ---
 export default Layout
 
-import QRCode from 'qrcode.react'
-
 wrap survay and talk requests:
 
-<QRCode value='https://goo.gl/forms/7cqtyxjKvG3LzPiC3' size={512} bgColor='#FFFFFF00'/>
+<QRLink href='https://goo.gl/forms/7cqtyxjKvG3LzPiC3' size={512} bgColor='#FFFFFF00'/>
 
