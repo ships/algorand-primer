@@ -28,8 +28,8 @@ const Layout = ({ children }) => (
     <MathJax.Provider>
       <Wrapper>{children}</Wrapper>
       <Footer>
-        <span>2019.01</span>
-        <span>eve@haut-kultur.group</span>
+        <span>@evenbetterfish</span>
+        <span>eve@eatbigger.fish</span>
       </Footer>
     </MathJax.Provider>
   </Fragment>
