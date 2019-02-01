@@ -198,6 +198,12 @@ Players reveal their lottery results in the same message which sends their decis
 
 *because advesary can't prevent message from arriving, the vote will eventually be counted*
 
+```notes
+Repave
+The player can effectively die because it has done its job
+Committee members never reveal information about future committees
+```
+
 ---
 export default Layout
 
@@ -224,7 +230,7 @@ export default Layout
 # Applying Byzantine Agreement
 
 - A leader and committee are randomly elected
-- <div/>leader calculates and signs a block <TeX formula={'B_r=(PAY,STATUS,H(B_{r-1})'}/>
+- <div/>leader calculates and signs a block <TeX formula={'B_r=(PAY,STATUS,H(B_{r-1}, Q_r)'}/>
 - committee safely certify that `H(B)` is valid via `BA*`
 
 ```notes
@@ -236,7 +242,7 @@ export default Layout
 
 # How does this scale?
 
-[ 500M] players in simulation
+[ 500K ] players in simulation
 
 [ 4K ] committee members
 
@@ -307,6 +313,9 @@ Jing Chen • Silvio Micali
 ```
 * Algorand’s technologies are the object of the following patent applications: US62/117,138 US62/120,916 US62/142,318 US62/218,817 US62/314,601 PCT/US2016/018300 US62/326,865 62/331,654 US62/333,340 US62/343,369 US62/344,667 US62/346,775 US62/351,011 US62/653,482 US62/352,195 US62/363,970 US62/369,447 US62/378,753 US62/383,299 US62/394,091 US62/400,361 US62/403,403 US62/410,721 US62/416,959 US62/422,883 US62/455,444 US62/458,746 US62/459,652 US62/460,928 US62/465,931
 ```
+
+```notes
+patent disposition unknown
 
 ---
 export default Layout
