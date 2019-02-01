@@ -10,22 +10,13 @@ export { comic as theme } from 'mdx-deck/themes'
 </Head>
 
 
-# byzantine agreement in Algorand
+# applying byzantine agreement in Algorand
 
 ```
 early evening
 c/o the better fish orchestra
 
 eve@eatbigger.fish
-```
-
----
-export default Layout
-
-# Algorand
-
-```notes
-let's talk about: ...
 ```
 
 ---
@@ -59,327 +50,185 @@ writing style, theory approach very appealing
 ---
 export default Layout
 
-# Byzantine Agreement?
+We want to **keep**:
 
-- Players agree on a Leader (byzatinely)
-- Leader supplies the block
+- leader and verifier committee random election
+- block finality when round ends
+- energy efficiency, etc
+
+---
+export default Layout
+
+But we want to fix:
+
+- democoin's `v(t)` is implausible to implement
+- democoin can be defeated by a Sybil
+- democoin can be defeated by a simple mobile adversary
+
+---
+export default Layout
+
+# Sybil attack
+
+Adversary creates numerous dummy players with no money, to dilute lottery power of honest players
+
+Resisted when your lottery power scales with currency holdings
 
 ```notes
-it is easy to see how this contrasts with POW
+this resists because you must overtake the whole network by outside means to accomplish it
 ```
 
 ---
-export default Layout
 
-## Given:
-- <TeX formula={'3n+1'} /> players in a gossip commons
-- <TeX formula={'{v_0, v_1, ... v_{3n+1}}'}/> secret values in set <TeX formula={'M'}/>
-- <TeX formula={'i'}/>th player only knows <TeX formula={'v_i'}/>
-- a very powerful malicious agent (the Adversary)
+# what is a mobile adversary?
 
-```notes
-M is some message space, like a binary string of some length
+ze can corrupt different players each round!
+
+---
+export default Split
+
+<div>
+
+### Democoin safe if ze:
+
+```
+- chooses up to n players out of 3n+1
+- once a player is corrupted, they remain corrupted forever
+- corrupt players are chosen in advance of play
 ```
 
----
-export default Layout
+</div>
 
-## Accomplish this:
-- by known time t, each player reach a decision
-- <div />each player's decision is in <TeX formula={'M \\cup \\bot '}/>
-- no two players disagree on their decision
-- <div />if <TeX formula={'v_i = V'}/> for all <TeX formula={'i'}/>, then all have decided on <TeX formula={'V'}/>.
+<div>
 
-```notes
-and here, the V is the leader's "name"
+### Algorand safe if ze:
+
+```
+- chooses up to n "shares" in any given step (weighted by currency holdings)
+- a player remains corrupted only for 1 step
+- can make hir choices progressively during the step
+- corruption can be done instantaneously
+- can read any sent message first
+- can reorder message delivering during a step
+- cannot prevent messages from being delivered
 ```
 
----
-export default Layout
-
-# How can this be done?
-
----
-export default Layout
-
-## Devise a game:
-- all players will play faithfully
-- game will consist of rounds
-- all players will eventually halt
-- all players reach a Decision
-
----
-export default Layout
-
-# This is easy in 1 round:
-
-<div /> Each player <TeX formula={'i'}/> gossips <TeX formula={'v_i'}/>.
-
-<div /> If she ever receives a gossiped message that is not <TeX formula={'v_i'}/>, she decides on <TeX formula={'\\bot'}/>.
-
-<div /> If not, then when round 1 ends, decide on <TeX formula={'v_i'}/>.
-
----
-export default Layout
-
-# That was too easy, wasn't it?
-
-yes.
-
-```notes
-don't forget: this must not only be true but Provably so
-```
-
----
-export default Layout
-
-## Because of our Adversary:
-
-remember, ze is very powerful!
-
-... how powerful, exactly?
-
----
-export default Layout
-
-## Ze can:
-
-- instantaneously corrupt players by name
-- control the actions of corrupted players
-- perfectly coordinate all corrupt behavior
-- adapt hir corruption choices between rounds
-- control the message passing network
-
-```notes
-so, in our lighthearted game, ze can trivially force all decisions to be \\bot.
-```
+</div>
 
 ---
 export default Layout
 
 # 🤯
 
+---
+export default Layout
+
+# Cryptographic Sortition
+
+Players are selected randomly, unpredictably, and verifiably for both leadership and committee membership
+
+---
+export default Layout
+
+Democoin: the common unpredictable random `v(t)` is combined with user identity to determine their leader/committee status for block at time `t`
+
+---
+export default Layout
+
+Algorand: each block contains a random value Q which each user signs to determine status in following block
+
+---
+
+<BgImage src={require("file-loader!./assets/q-chained.jpg")} />
+
+---
+export default Layout
+
+If Q values are chained, how do we prevent early computation?
+
+---
+export default Layout
+
+This requires a new primitive:
+
+# Verifiable Random Functions
+
+---
+export default Layout
+
+# VRF schemes consist of 3 functions:
+
+Keygen - Sign - Verify
+
+---
+export default Layout
+
+but must have this special property:
+
+# a signature must be indistinguishable from random string
+
+---
+export default Layout
+
+now, leader can submit `VRF_SIGN(Q)` to be the next Q in the block proposal
+
+---
+
+<BgImage src={require("file-loader!./assets/q-sig-chained.jpg")} />
+
 ```notes
-we should just fall down and die, right?
+because VRF is a random function, we can use the Q value each round as a v(t)
+"suitably random value that becoems known at time T"
 ```
 
 ---
 export default Layout
 
-## Ze cannot, within one round:
-- leverage unbounded compute power
-- prevent a true message from propagating
-- corrupt more than `n` players (honest majority)
+Now we have:
 
-```notes
-point out that "round" is kinda like a quantum of time
-
-so, for example, writing down the private keys and using them in a later round still
-counts as corrupting that user in a later round
-
-emphasize: this is FAR MORE POWERFUL than the adversarial model in bitcoin, stellar
-this is also not a totally precise specification but suffices for this talk
-
-and so we walk it back ...
-```
-
----
-
-<BgImage src={require("file-loader!./assets/Matt_Berninger_at_Way_Out_West_2014.jpg")} >
-  <CaptionFloat>
-    Kim Metso [<a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>], <a href="https://commons.wikimedia.org/wiki/File:Matt_Berninger_at_Way_Out_West_2014.jpg">from Wikimedia Commons</a>
-  </CaptionFloat>
-</BgImage>
-
-
-```notes
-words of matt berninger: walk it back
-
-new rule:
-```
+- randomly selected leader
+- randomly selected committee members
 
 ---
 export default Layout
 
-# only require resolutions among consistently honest majority
+# Player Replaceability
+
+Players reveal their lottery results in the same message which sends their decision
+
+*because advesary can't prevent message from arriving, the vote will eventually be counted*
 
 ---
 export default Layout
 
-## An honest majority should consistently resolve:
-- by known time t, each player reach a decision
-- <div />each player's decision is in <TeX formula={'M \\cup \\bot '}/>
-- no two players disagree on their decision
-- <div />if <TeX formula={'v_i = V'}/> for all <TeX formula={'i'}/>, then all have decided on <TeX formula={'V'}/>.
+# `BA*`
+
+- not the first byzantine agreement protocol
+- with sortition, it is the first Player Replaceable one
+- roughly, comprises 3 components each round:
 
 ---
+export default Layout
 
-# Rounds should be playable in about 10s?
-
-## I guess let's limit our protocol to 5000 legit messages in a round
+### Block proposal: 1 step
+### Graded Consensus: 2 steps
+### Byzantine Bit Agreement: 3m steps
 
 ```notes
-Now, you may have even devised a solution in your head just now.
-BUT: in order to be practicable, we will add another constraint
+m is a parameter that can increase risk of false "empty" blocks in exchange for worst-case closing time
 ```
 
 ---
 export default Layout
 
-# How can this be done?
+# Applying Byzantine Agreement
 
----
-export default Layout
-
-## Devise a game:
-- corrupt players do whatever adversary want
-- game will consist of rounds
-- only, say, 5000 players have to participate in each round
-- honest players will eventually halt
-- <div />honest players reach a Decision in <TeX formula={'M \\cup \\{ \\bot \\}'}/>
-
----
-export default Layout
-
-we can do this with 3 wishes from
-
-## the game genie
-
----
-export default Layout
-
-# 1: a graded consensus protocol
-
----
-export default Layout
-
-## Graded consensus:
-
-All players `i` in an honest majority will halt with a transformation like:
-
-<TeX formula={"v'_i \\rightarrow (v_i, g_i)"}/>
+- A leader and committee are randomly elected
+- <div/>leader calculates and signs a block <TeX formula={'B_r=(PAY,STATUS,H(B_{r-1})'}/>
+- committee safely certify that `H(B)` is valid via `BA*`
 
 ```notes
-though, in reality, we generally define Graded Consensus for any proportion of honesty, and only solve it for t >= 3n + 1
-```
-
----
-export default Layout
-
-<TeX formula={"v'_i \\rightarrow (v_i, g_i)"}/>
-
-- <div /> all <TeX formula={"v'_i, v_i \\in M, g_i \\in \\{0,1,2\\}"} />
-- <div /> <TeX formula={"v'_i"} /> is an initial value known only to <TeX formula={'i'} />
-- <div /> all honest with <TeX formula={'g > 0'}/> chose same <TeX formula={'v_i'} />
-- <div /> honestly chosen <TeX formula={'g'}/> never include both <TeX formula={'0'}/> and <TeX formula={'2'}/>
-- <div /> unanimous honest <TeX formula={"v'_i"}/> imply all <TeX formula={'(v_i, g_i) = (V, 2)'}/>
-
----
-
-<BgImage src={require("file-loader!./assets/gc.jpg")}/>
-
----
-export default Layout
-
-# 2: a binary byzantine agreement protocol
----
-export default Layout
-
-## binary BA:
-
-All players `i` in an honest majority will halt with a transformation like:
-
-<TeX formula={"b'_i \\rightarrow b_i"}/>
-
----
-export default Layout
-
-<TeX formula={"b'_i \\rightarrow b_i"}/>
-
-- <div /> all <TeX formula={"b'_i, b_i \\in \\{0,1\\}"} />
-- <TeX formula={"b'_i"}/> is an initial bit known only to i
-- all honest `i` decide on same result (agreement)
-- <div/>unanimous honest <TeX formula={"b'_i"}/> will not flip their bits (consistency)
-
----
-
-<BgImage src={require("file-loader!./assets/bba.jpg")}/>
-
----
-
-<BgImage src={require("file-loader!./assets/compose.jpg")}/>
-
----
-export default Layout
-
-# Choosing the initial `v'` for all honest players
-
-What if a player could reliably prove to everyone that they had won a fair, robust, and random lotto?
-
----
-export default Layout
-
-# 3: a sortition scheme
-
-### for all players `i,p,q` and all rounds `r`:
-- <TeX formula={"CONFIRM_p(\\sigma_i(r)) = CONFIRM_q(\\sigma_i(r))"}/>
-- <TeX formula={"P\[CONFIRM_p(\\sigma_i(r))\] \\approx 1/n"}/>
-- <TeX formula={"t < r \\rightarrow \\forall \\Sigma: P\[CONFIRM_p(\\Sigma_{i}(r))\] \\approx 0"} />
-
-```notes
-1: players won't disagree on validity
-2: distribution is fair
-3: for any function Big-Sigma which can be computed before round r begins
-```
-
----
-export default Layout
-
-## Ok, so each round choose `v'` like so:
-1. every player computes a lotto ticket 𝝈(r)
-2. if they believe it wins, propagate it
-3. everyone chooses the best 𝝈 winner as `v'` that round
-
----
-
-# and you can accomplish both efficiency and player-replaceability.
-
-## just choose a sub-committee of users by sortition as well
-
----
-export default Layout
-
-# What about the bad case
-
-the adversary cannot prevent a true winner from propagating their ticket ... but ze will have a true winning ticket hirself in `n/3n+1` cases and CAN elect to send hir true winning ticket only to subset of players:
-
----
-export default Layout
-
-### This case reduces to honest propagation, because ze still has control over block proposal.
-
-### Consequence:
-
-## The adversary can force 1/3 of blocks to omit transactions, and make agreement take maximum allowed time.
-
-```notes
-and they can't even do that secretly
-```
-
----
-export default Layout
-
-remember, transactions cannot be forged, so the risk we are confronting is that state changes are prevented..
-
-Probability that a requested transaction can be withheld by the adversary for 1 hour:
-
-<TeX formula={"P \\approx 1/3.5 \\times 10^9"} />
-
-```notes
-leader's job is to ensure there's an agreed upon ledger order: everyone already has a decently saturated set of transactions.
-
-1 hour is a standard minimum waiting period for bitcoins to clear.
-Here, it is a pessimistic maximum.
+it is easy to see how this contrasts with POW
 ```
 
 ---
@@ -401,26 +250,25 @@ note that Bitcoin only has 300000 active users by some estimates
 ---
 export default Layout
 
-# Player Replaceability
+# One last issue...
 
-This is a novel property.
-
----
-export default Layout
-
-The adversary is mobile. Once the protocol begins, why doesn't ze just corrupt all the committee members?
+remember player replaceability?
 
 ---
 export default Layout
 
-The committee is re-randomized in every step, and each step consists of only 1 message being sent by each member, revealing decision and identity simultaneously.
+What if adversary corrupts the leader & committee immediately when they reveal themselves, then ze forces them to send a second message of hir choosing that will arrive before their legitimate messages?
 
-Once that message is propagated, ze cannot stop it, and ze gains no benefit from maintaining corruption of that user, whose job is done.
+Ze can double spend!
 
 ---
 export default Layout
 
-Thus, in a player-replaceable byzantine agreement, even a mobile adversary who must corrupt players by name cannot capture a committee resolution in any step except with negligible probability.
+we are saved by Ephemeral Signing Keys:
+
+each player uses a special key for each step, which they destroy after signing but before propagating step messages.
+
+this is tedious and inconvenient, and thus an active area of research for me.
 
 ---
 export default Layout
@@ -460,19 +308,17 @@ Jing Chen • Silvio Micali
 * Algorand’s technologies are the object of the following patent applications: US62/117,138 US62/120,916 US62/142,318 US62/218,817 US62/314,601 PCT/US2016/018300 US62/326,865 62/331,654 US62/333,340 US62/343,369 US62/344,667 US62/346,775 US62/351,011 US62/653,482 US62/352,195 US62/363,970 US62/369,447 US62/378,753 US62/383,299 US62/394,091 US62/400,361 US62/403,403 US62/410,721 US62/416,959 US62/422,883 US62/455,444 US62/458,746 US62/459,652 US62/460,928 US62/465,931
 ```
 
-```notes
-```
-
 ---
 export default Layout
 
 current focus of study:
 
 - applicability to underbanked communities
-- BLS signatures, related ID-based signatures
+- BLS & related ID-based signatures for ephemeral keys
 - solutions for partial or infrequent connectivity
 
 ```notes
+Boneh-Lynn-Shacham
 brief remarks about why these are interesting
 ```
 
