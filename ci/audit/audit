@@ -1,0 +1,8 @@
+#!/bin/bash -eux
+
+pushd subject
+
+  yarn install
+  yarn audit
+
+popd

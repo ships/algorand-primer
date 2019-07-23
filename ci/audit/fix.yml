@@ -12,4 +12,4 @@ outputs:
   - name: dirty
 
 run:
-  path: subject/ci/audit-fix/run.sh
+  path: subject/ci/audit/fix.sh
