@@ -1,6 +1,9 @@
 #!/bin/bash -eux
 
-pushd subject
+this_dir="$(dirname $0)"
+repo_root="$(cd $this_dir/../.. && pwd)"
+
+pushd ${repo_root}
 
   yarn install
   yarn audit
