@@ -7,4 +7,4 @@ pushd subject
 
 popd
 
-rsync -a -v ./subject/ ./dirty/
+cp -R ./subject/. ./dirty/
