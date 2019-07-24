@@ -5,7 +5,6 @@ repo_root="$(cd $this_dir/../.. && pwd)"
 
 pushd ${repo_root}
 
-  yarn install
   yarn audit
 
 popd

@@ -6,3 +6,5 @@ pushd subject
   yarn upgrade -CLA
 
 popd
+
+rsync -a -v ./subject/ ./dirty/
