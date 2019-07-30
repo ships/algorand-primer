@@ -20,7 +20,9 @@ eve@eatbigger.fish
 ```
 
 ---
-export default Layout
+
+
+<Layout>
 
 # my favorite byzantine agreement system
 <br/>
@@ -34,7 +36,8 @@ but first...
 ```
 
 ---
-export default Layout
+
+<Layout>
 
 Why is it my favorite?
 
@@ -48,7 +51,8 @@ writing style, theory approach very appealing
 ```
 
 ---
-export default Layout
+
+<Layout>
 
 We want to **keep**:
 
@@ -56,8 +60,11 @@ We want to **keep**:
 - block finality when round ends
 - energy efficiency, etc
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 But we want to fix:
 
@@ -65,8 +72,11 @@ But we want to fix:
 - democoin can be defeated by a Sybil
 - democoin can be defeated by a simple mobile adversary
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 # Sybil attack
 
@@ -78,6 +88,8 @@ Resisted when your lottery power scales with currency holdings
 this resists because you must overtake the whole network by outside means to accomplish it
 ```
 
+</Layout>
+
 ---
 
 # what is a mobile adversary?
@@ -85,11 +97,13 @@ this resists because you must overtake the whole network by outside means to acc
 ze can corrupt different players each round!
 
 ---
-export default Split
+
+<Split>
 
 <div>
 
 ### Democoin safe if ze:
+
 
 ```
 - chooses up to n players out of 3n+1
@@ -115,62 +129,91 @@ export default Split
 
 </div>
 
+</Split>
+
 ---
-export default Layout
+
+<Layout>
 
 # 🤯
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 # Cryptographic Sortition
 
 Players are selected randomly, unpredictably, and verifiably for both leadership and committee membership
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 Democoin: the common unpredictable random `v(t)` is combined with user identity to determine their leader/committee status for block at time `t`
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 Algorand: each block contains a random value Q which each user signs to determine status in following block
+
+</Layout>
 
 ---
 
 <BgImage src={require("file-loader!./assets/q-chained.jpg")} />
 
 ---
-export default Layout
+
+<Layout>
 
 If Q values are chained, how do we prevent early computation?
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 This requires a new primitive:
 
 # Verifiable Random Functions
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 # VRF schemes consist of 3 functions:
 
 Keygen - Sign - Verify
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 but must have this special property:
 
 # a signature must be indistinguishable from random string
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 now, leader can submit `VRF_SIGN(Q)` to be the next Q in the block proposal
+
+</Layout>
 
 ---
 
@@ -181,16 +224,22 @@ because VRF is a random function, we can use the Q value each round as a v(t)
 "suitably random value that becoems known at time T"
 ```
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 Now we have:
 
 - randomly selected leader
 - randomly selected committee members
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 # Player Replaceability
 
@@ -204,8 +253,11 @@ The player can effectively die because it has done its job
 Committee members never reveal information about future committees
 ```
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 # `BA*`
 
@@ -213,8 +265,11 @@ export default Layout
 - with sortition, it is the first Player Replaceable one
 - roughly, comprises 3 components each round:
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 ### Block proposal: 1 step
 ### Graded Consensus: 2 steps
@@ -224,8 +279,11 @@ export default Layout
 m is a parameter that can increase risk of false "empty" blocks in exchange for worst-case closing time
 ```
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 # Applying Byzantine Agreement
 
@@ -237,8 +295,11 @@ export default Layout
 it is easy to see how this contrasts with POW
 ```
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 # How does this scale?
 
@@ -253,22 +314,31 @@ these are tested results
 note that Bitcoin only has 300000 active users by some estimates
 ```
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 # One last issue...
 
 remember player replaceability?
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 What if adversary corrupts the leader & committee immediately when they reveal themselves, then ze forces them to send a second message of hir choosing that will arrive before their legitimate messages?
 
 Ze can double spend!
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 we are saved by Ephemeral Signing Keys:
 
@@ -276,8 +346,11 @@ each player uses a special key for each step, which they destroy after signing b
 
 this is tedious and inconvenient, and thus an active area of research for me.
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 That's all really hard to summarize...
 
@@ -286,8 +359,11 @@ in fact, i think it's in the nature of cryptosystems that it's hard to summarize
 but let's give it a shot
 ```
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 But let's try!
 
@@ -304,6 +380,8 @@ but i promised you a Big Flaw
 so i've made this reproduction of the first page of the paper:
 ```
 
+</Layout>
+
 ---
 
 # ALGORAND*
@@ -317,8 +395,11 @@ Jing Chen • Silvio Micali
 ```notes
 patent disposition unknown
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 current focus of study:
 
@@ -331,10 +412,15 @@ Boneh-Lynn-Shacham
 brief remarks about why these are interesting
 ```
 
+</Layout>
+
 ---
-export default Layout
+
+<Layout>
 
 wrap survey and talk requests:
 
 <QRLink href='https://goo.gl/forms/7cqtyxjKvG3LzPiC3' size={512} bgColor='#FFFFFF00'/>
+
+</Layout>
 
