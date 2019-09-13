@@ -2,8 +2,12 @@ import { Head } from 'mdx-deck'
 import { SplitRight, Split } from 'mdx-deck'
 import { Appear } from 'mdx-deck'
 import { BgImage, TeX, CaptionFloat, Layout, QRLink } from './src'
+import { comic as comicTheme } from 'mdx-deck/themes'
 
-export { comic as theme } from 'mdx-deck/themes'
+import qsigchained from './assets/q-sig-chained.jpg'
+import qchained from './assets/q-chained.jpg'
+
+export const theme = comicTheme;
 
 <Head>
   <title>byzantine agreement in algorand</title>
@@ -167,7 +171,7 @@ Algorand: each block contains a random value Q which each user signs to determin
 
 ---
 
-<BgImage src={require("file-loader!./assets/q-chained.jpg")} />
+<BgImage src={qchained} />
 
 ---
 
@@ -217,7 +221,7 @@ now, leader can submit `VRF_SIGN(Q)` to be the next Q in the block proposal
 
 ---
 
-<BgImage src={require("file-loader!./assets/q-sig-chained.jpg")} />
+<BgImage src={qsigchained} />
 
 ```notes
 because VRF is a random function, we can use the Q value each round as a v(t)

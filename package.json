@@ -14,15 +14,23 @@
   "license": "MIT",
   "devDependencies": {
     "file-loader": "^4.1.0",
-    "mdx-deck": "^3.0.7"
+    "mdx-deck": "^3.0.8"
   },
   "name": "algorand-primer",
   "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@emotion/core": "^10.0.14",
+    "@emotion/styled": "^10.0.14",
+    "@mdx-js/react": "^1.0.0",
+    "gatsby-plugin-mdx": "^1.0.41",
     "npm": "^6.10.2",
     "qrcode.react": "^0.9.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-helmet": "^5.1.3",
     "react-mathjax": "^1.0.1",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "theme-ui": "^0.1.2",
+    "webpack": "^4.0.0"
   }
 }
